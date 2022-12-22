@@ -1,5 +1,4 @@
 <?php
-
 /**
 *
 * @package           MySlideShow
@@ -29,7 +28,20 @@ if (!defined('WPINC')) {
 }
 
 define( 'MYSLIDESHOW_VERSION', '1.0.0' );
-define( 'MYSLIDESHOW_NAME', 'myslideshow' );
+define( 'MYSLIDESHOW_NAME', 'MySlideShow' );
 define( 'MYSLIDESHOW_MINIMUM_WP_VERSION', '5.0' );
 define( 'MYSLIDESHOW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MYSLIDESHOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+require MYSLIDESHOW_PLUGIN_DIR . 'includes/MySlideShowPlugin.php';
+
+register_activation_hook( __FILE__, array( 'MySlideShowPlugin', 'plugin_activation' ) );
+register_deactivation_hook( __FILE__, array( 'MySlideShowPlugin', 'plugin_deactivation' ) );
+
+function runMySlideShowPlugin(){
+
+  $plugin = new MySlideShowPlugin();
+  $plugin->run();
+}
+
+runMySlideShowPlugin();
