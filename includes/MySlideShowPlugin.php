@@ -5,16 +5,17 @@ class MySlideShowPlugin {
 	}
 
 	public static function plugin_activation() {
-		
+		add_option( 'myslideshow_options' , array(
+        	'myslideshow_title' => 'My Slideshow',
+        	'myslideshow_images' => json_encode(array())
+        ));
 	}
-
-	private static function fail_on_activation( $message, $deactivate = true ) {
 	
-	}
-
 	public static function plugin_deactivation() {
+		delete_option( 'myslideshow_options' );
 	}
 
 	public function run() {
+
 	}
 }
