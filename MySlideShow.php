@@ -28,7 +28,7 @@ if (!defined('WPINC')) {
 }
 
 define( 'MYSLIDESHOW_VERSION', '1.0.0' );
-define( 'MYSLIDESHOW_NAME', 'MySlideShow' );
+define( 'MYSLIDESHOW_NAME', 'myslideshow' );
 define( 'MYSLIDESHOW_MINIMUM_WP_VERSION', '5.0' );
 define( 'MYSLIDESHOW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MYSLIDESHOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
