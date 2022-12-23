@@ -13,9 +13,9 @@ class MySlideShowAdmin {
 		add_action('admin_enqueue_scripts', function () {
 			wp_enqueue_media();
 
-	    	wp_enqueue_style( MYSLIDESHOW_NAME . '-admin-style', MYSLIDESHOW_PLUGIN_URL . 'admin/css/myslideshow-admin.css', array(), MYSLIDESHOW_VERSION, 'all' );
+	    	wp_enqueue_style( MYSLIDESHOW_NAME . '-admin', MYSLIDESHOW_PLUGIN_URL . 'admin/css/myslideshow-admin.css', array(), MYSLIDESHOW_VERSION, 'all' );
 
-			wp_enqueue_script( MYSLIDESHOW_NAME . '-admin-script', MYSLIDESHOW_PLUGIN_URL . 'admin/js/myslideshow-admin.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
+			wp_enqueue_script( MYSLIDESHOW_NAME . '-admin', MYSLIDESHOW_PLUGIN_URL . 'admin/js/myslideshow-admin.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 	    });
 	}
 

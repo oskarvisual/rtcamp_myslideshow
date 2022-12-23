@@ -8,13 +8,13 @@ class MySlideShowShortcode {
 
 	public function run():void {
 		add_action('wp_enqueue_scripts', function () {
-			wp_enqueue_style(MYSLIDESHOW_NAME . "-shortcode-glider-style", 'https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css', [], MYSLIDESHOW_VERSION, 'all');
+			wp_enqueue_style(MYSLIDESHOW_NAME . "-glider", 'https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css', [], MYSLIDESHOW_VERSION, 'all');
 
-			wp_enqueue_style(MYSLIDESHOW_NAME . "-shortcode-style", MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/myslideshow.css', [], MYSLIDESHOW_VERSION, 'all');
+			wp_enqueue_style(MYSLIDESHOW_NAME, MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/myslideshow.css', [], MYSLIDESHOW_VERSION, 'all');
 			
-			wp_enqueue_script( MYSLIDESHOW_NAME . '-shortcode-glider-script', 'https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
+			wp_enqueue_script( MYSLIDESHOW_NAME . '-glider', 'https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 
-			wp_enqueue_script( MYSLIDESHOW_NAME . '-shortcode-script', MYSLIDESHOW_PLUGIN_URL . 'shortcodes/js/myslideshow.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
+			wp_enqueue_script( MYSLIDESHOW_NAME, MYSLIDESHOW_PLUGIN_URL . 'shortcodes/js/myslideshow.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 		});
 
 		$this->myslideshow_shortcode();
@@ -23,15 +23,17 @@ class MySlideShowShortcode {
 	private function myslideshow_shortcode()  {
 		add_shortcode(MYSLIDESHOW_NAME, function ($shortcode_attributes) {
 			$attributes = shortcode_atts([
-				'arrows' => '1',
-				'dots' => '1'
+				'slides' => 1,
+				'title' => 1,
+				'arrows' => 1,
+				'dots' => 1
 			], $shortcode_attributes);
 
 			ob_start();
 
 			echo '<div class="glider-contain">';
 
-				echo '<div class="glider myslideshow">';
+				printf('<div class="glider myslideshow" id="myslideshow" data-slides="%s" data-arrows="%s" data-dots="%s">', $attributes['slides'], $attributes['arrows'], $attributes['dots']);
 
 					if(isset($this->myslideshow_options['myslideshow_images'])){
 						$images = json_decode($this->myslideshow_options['myslideshow_images'], true);
@@ -46,7 +48,7 @@ class MySlideShowShortcode {
 									}
 										printf('<img src="%s" class="myslideshow__image" title="%s" alt="%s" />', wp_get_attachment_image_url(esc_attr($image["id"]), 'full', false ), esc_attr($image["title"]), esc_attr($image["alt"]));
 
-										if(!empty(@$image["url"])){
+										if(!empty(@$image["title"]) && $attributes['title'] == 1){
 											printf('<h2 class="myslideshow__title">%s</h2>', esc_attr($image["title"]));
 										}
 
@@ -62,11 +64,15 @@ class MySlideShowShortcode {
 
 				echo '</div>';
 
-				echo '<button aria-label="Previous" class="glider-prev">«</button>';
+				if($attributes['arrows'] == 1){
+					echo '<button aria-label="Previous" class="glider-prev myslideshow__button myslideshow__button--prev" id="myslideshow-prev"><span class="dashicons dashicons-arrow-left-alt2"></span></button>';
 
-				echo '<button aria-label="Next" class="glider-next">»</button>';
+					echo '<button aria-label="Next" class="glider-next myslideshow__button myslideshow__button--next" id="myslideshow-next"><span class="dashicons dashicons-arrow-right-alt2"></span></button>';
+				}
 
-				echo '<div role="tablist" class="dots"></div>';
+				if($attributes['dots'] == 1){
+					echo '<div role="tablist" class="glider-dots myslideshow__dots" id="myslideshow-dots"></div>';
+				}
 			
 			echo '</div>';
 

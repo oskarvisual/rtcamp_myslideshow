@@ -16,5 +16,62 @@
 }
 
 .myslideshow__title{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 15px 10px;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	font-size: 1em;
+	line-height: 1;
+}
 
+.myslideshow__button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 60px;
+	padding: 0;
+	border-radius: 50%;
+	font-size: 1.5em;
+	line-height: 1;
+}
+
+.myslideshow__button.disabled{
+
+}
+
+
+.myslideshow__button--prev{
+
+}
+
+.myslideshow__button--next{
+
+}
+
+.myslideshow__dots{
+
+}
+.myslideshow__dots > .glider-dot,
+.myslideshow__dots > .glider-dot:not(:hover),
+.myslideshow__dots > .glider-dot:not(:active),
+.myslideshow__dots > .glider-dot:not(:focus),
+.myslideshow__dots > .glider-dot:not(:hover):not(:active):not(.has-background),
+.myslideshow__dots > .glider-dot:not(.active){
+	width: 12px;
+	height: 12px;
+	background: transparent;
+	border: 3px solid #000;
+	border-radius: 50%;
+}
+
+.myslideshow__dots > .glider-dot.active,
+.myslideshow__dots > .glider-dot.active:not(:hover):not(:active):not(.has-background),
+.myslideshow__dots > .glider-dot:hover,
+.myslideshow__dots > .glider-dot:focus{
+	background-color: #000;
+	color: #000;
 }

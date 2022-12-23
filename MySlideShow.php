@@ -38,10 +38,9 @@ require MYSLIDESHOW_PLUGIN_DIR . 'includes/MySlideShowPlugin.php';
 register_activation_hook( __FILE__, array( 'MySlideShowPlugin', 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( 'MySlideShowPlugin', 'plugin_deactivation' ) );
 
-function runMySlideShowPlugin(){
-
+function run_myslideshow_plugin(){
   $plugin = new MySlideShowPlugin();
   $plugin->run();
 }
 
-runMySlideShowPlugin();
+run_myslideshow_plugin();
