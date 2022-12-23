@@ -1,0 +1,20 @@
+.myslideshow{
+
+}
+
+.myslideshow a{
+	text-decoration: none;
+}
+
+.myslideshow__item{
+	position: relative;
+}
+
+.myslideshow__image{
+	width: 100%;
+	height: auto;
+}
+
+.myslideshow__title{
+
+}

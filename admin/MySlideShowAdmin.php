@@ -190,7 +190,9 @@ class MySlideShowAdmin {
 					}
 				}
 			}
+
 		echo '</ul>';
+		
 	}
 
 }

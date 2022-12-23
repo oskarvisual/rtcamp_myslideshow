@@ -1,11 +1,8 @@
 <?php
 require_once MYSLIDESHOW_PLUGIN_DIR . 'admin/MySlideShowAdmin.php';
+require_once MYSLIDESHOW_PLUGIN_DIR . 'shortcodes/MySlideShowShortcode.php';
 
 class MySlideShowPlugin {
-	public function __construct() {
-		
-	}
-
 	public static function plugin_activation():void  {
 		add_option( 'myslideshow_options' , array(
         	'myslideshow_title' => 'My Slideshow',
@@ -18,8 +15,12 @@ class MySlideShowPlugin {
 	}
 
 	public function run():void  {
-		$MySlideShowAdmin = new MySlideShowAdmin();
+		$MySlideShowShortcode = new MySlideShowShortcode();
+		$MySlideShowShortcode->run();
 
-		$MySlideShowAdmin->run();
+		if(is_admin()){
+			$MySlideShowAdmin = new MySlideShowAdmin();
+			$MySlideShowAdmin->run();
+		}
 	}
 }
