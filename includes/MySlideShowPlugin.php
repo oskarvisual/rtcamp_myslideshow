@@ -6,18 +6,18 @@ class MySlideShowPlugin {
 		
 	}
 
-	public static function plugin_activation() {
+	public static function plugin_activation():void  {
 		add_option( 'myslideshow_options' , array(
         	'myslideshow_title' => 'My Slideshow',
         	'myslideshow_images' => json_encode(array())
         ));
 	}
 
-	public static function plugin_deactivation() {
+	public static function plugin_deactivation():void  {
 		delete_option( 'myslideshow_options' );
 	}
 
-	public function run() {
+	public function run():void  {
 		$MySlideShowAdmin = new MySlideShowAdmin();
 
 		$MySlideShowAdmin->run();

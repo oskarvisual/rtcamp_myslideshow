@@ -1,1 +1,44 @@
-myslideshow-admin.css
+.myslideshow{
+	list-style-type: none; 
+	margin: 0; 
+	adding: 0; 
+}
+
+.myslideshow__item{
+	background: #f0f0f1;
+	position: relative;
+	border: 1px solid #ccc;
+	padding: 10px 45px;
+}
+
+.myslideshow__move{
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+}
+
+.myslideshow__delete{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: #d63638;
+	cursor: pointer;
+}
+
+.myslideshow__content{
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	grid-gap: 20px;
+}
+
+.myslideshow__thumbnail{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.myslideshow__image{
+	width: 150px;
+	height: auto;
+}
