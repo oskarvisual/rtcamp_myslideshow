@@ -1,21 +1,21 @@
-.myslideshow{
+.myslideshow {
 
 }
 
-.myslideshow a{
+.myslideshow a {
 	text-decoration: none;
 }
 
-.myslideshow__item{
+.myslideshow__item {
 	position: relative;
 }
 
-.myslideshow__image{
+.myslideshow__image {
 	width: 100%;
 	height: auto;
 }
 
-.myslideshow__title{
+.myslideshow__title {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -27,7 +27,7 @@
 	line-height: 1;
 }
 
-.myslideshow__button{
+.myslideshow__button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -39,20 +39,20 @@
 	line-height: 1;
 }
 
-.myslideshow__button.disabled{
+.myslideshow__button.disabled {
 
 }
 
 
-.myslideshow__button--prev{
+.myslideshow__button--prev {
 
 }
 
-.myslideshow__button--next{
+.myslideshow__button--next {
 
 }
 
-.myslideshow__dots{
+.myslideshow__dots {
 
 }
 .myslideshow__dots > .glider-dot,
@@ -60,7 +60,7 @@
 .myslideshow__dots > .glider-dot:not(:active),
 .myslideshow__dots > .glider-dot:not(:focus),
 .myslideshow__dots > .glider-dot:not(:hover):not(:active):not(.has-background),
-.myslideshow__dots > .glider-dot:not(.active){
+.myslideshow__dots > .glider-dot:not(.active) {
 	width: 12px;
 	height: 12px;
 	background: transparent;
@@ -71,7 +71,7 @@
 .myslideshow__dots > .glider-dot.active,
 .myslideshow__dots > .glider-dot.active:not(:hover):not(:active):not(.has-background),
 .myslideshow__dots > .glider-dot:hover,
-.myslideshow__dots > .glider-dot:focus{
+.myslideshow__dots > .glider-dot:focus {
 	background-color: #000;
 	color: #000;
 }
