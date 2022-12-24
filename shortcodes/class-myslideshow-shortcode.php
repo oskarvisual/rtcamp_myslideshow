@@ -10,9 +10,9 @@ class MySlidehow_Shortcode {
 		add_action('wp_enqueue_scripts', function () {
 			wp_enqueue_style( 'dashicons' );
 
-			wp_enqueue_style(MYSLIDESHOW_NAME . "-glider", MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/glider.min.css', [], MYSLIDESHOW_VERSION, 'all');
+			wp_enqueue_style( MYSLIDESHOW_NAME . "-glider", MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/glider.min.css', [], MYSLIDESHOW_VERSION, 'all');
 
-			wp_enqueue_style(MYSLIDESHOW_NAME, MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/myslideshow.css', [], MYSLIDESHOW_VERSION, 'all');
+			wp_enqueue_style( MYSLIDESHOW_NAME, MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/myslideshow.css', [], MYSLIDESHOW_VERSION, 'all');
 			
 			wp_enqueue_script( MYSLIDESHOW_NAME . '-glider', MYSLIDESHOW_PLUGIN_URL . 'shortcodes/js/glider.min.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 
@@ -23,7 +23,7 @@ class MySlidehow_Shortcode {
 	}
 
 	private function myslideshow_shortcode()  {
-		add_shortcode(MYSLIDESHOW_NAME, function ($shortcode_attributes) {
+		add_shortcode( MYSLIDESHOW_NAME, function ($shortcode_attributes) {
 			$attributes = shortcode_atts([
 				'slides' => 1,
 				'title' => 1,

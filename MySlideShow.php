@@ -11,7 +11,7 @@
 * @wordpress-plugin
 * Plugin Name:       MySlideshow
 * Plugin URI:        https://rtcamp.com/assignments/wordpress-plugin/
-* Description:       This plugin test if I'm familiar with WordPress shortcodes.
+* Description:       This plugin allows you to add a slideshow with a shortcode anywhere on the site
 * Version:           1.0.0
 * Requires at least: 5.8
 * Requires PHP:      7.4

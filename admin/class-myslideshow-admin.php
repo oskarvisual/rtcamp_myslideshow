@@ -84,7 +84,7 @@ class MySlideshow_Admin {
 		echo '</div>';
 	}
 
-	public function myslideshow_sanitize($input):array {
+	public function myslideshow_sanitize( $input ):array {
 		$sanitary_values = array();
 
 		if ( isset( $input['myslideshow_title'] ) ) {
