@@ -1,4 +1,4 @@
-=== MySlideShow ===
+=== MySlideshow ===
 
 Contributors: Oscar Fernandez
 Tags: SlideShow

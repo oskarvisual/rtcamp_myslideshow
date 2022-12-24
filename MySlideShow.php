@@ -1,15 +1,15 @@
 <?php
 /**
 *
-* @package           MySlideShow
+* @package           MySlideshow
 * @author            Oscar Fernandez
 * @link              https://www.linkedin.com/in/oscarfer/
 * @since             1.0.0
-* @copyright         2022 MySlideShow
+* @copyright         2022 MySlideshow
 * @license           GPL-3.0-or-later
 *
 * @wordpress-plugin
-* Plugin Name:       MySlideShow
+* Plugin Name:       MySlideshow
 * Plugin URI:        https://rtcamp.com/assignments/wordpress-plugin/
 * Description:       This plugin test if I'm familiar with WordPress shortcodes.
 * Version:           1.0.0
@@ -33,14 +33,14 @@ define( 'MYSLIDESHOW_MINIMUM_WP_VERSION', '5.0' );
 define( 'MYSLIDESHOW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MYSLIDESHOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-require MYSLIDESHOW_PLUGIN_DIR . 'includes/MySlideShowPlugin.php';
+require MYSLIDESHOW_PLUGIN_DIR . 'includes/class-myslideshow-plugin.php';
 
-register_activation_hook( __FILE__, array( 'MySlideShowPlugin', 'plugin_activation' ) );
-register_deactivation_hook( __FILE__, array( 'MySlideShowPlugin', 'plugin_deactivation' ) );
+register_activation_hook( __FILE__, array( 'MySlideshow_Plugin', 'plugin_activation' ) );
+register_deactivation_hook( __FILE__, array( 'MySlideshow_Plugin', 'plugin_deactivation' ) );
 
 function run_myslideshow_plugin(){
-  $plugin = new MySlideShowPlugin();
-  $plugin->run();
+  $MySlideshow_Plugin = new MySlideshow_Plugin();
+  $MySlideshow_Plugin->run();
 }
 
 run_myslideshow_plugin();

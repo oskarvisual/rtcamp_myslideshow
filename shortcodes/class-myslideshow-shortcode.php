@@ -1,5 +1,5 @@
 <?php
-class MySlideShowShortcode {
+class MySlidehow_Shortcode {
 	private array $myslideshow_options;
 
 	public function __construct() {

@@ -1,5 +1,5 @@
 <?php
-class MySlideShowAdmin {
+class MySlideshow_Admin {
 	private array $myslideshow_options;
 
 	public function __construct() {
