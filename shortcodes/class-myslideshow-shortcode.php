@@ -46,12 +46,12 @@ class MySlidehow_Shortcode {
 
 									
 									if(!empty(@$image["url"])){
-										printf('<a href="%s">', esc_attr($image["url"]));
+										printf('<a href="%s">', esc_url(@$image["url"]));
 									}
-										printf('<img src="%s" class="myslideshow__image" title="%s" alt="%s" />', wp_get_attachment_image_url(esc_attr($image["id"]), 'full', false ), esc_attr($image["title"]), esc_attr($image["alt"]));
+										printf('<img src="%s" class="myslideshow__image" title="%s" alt="%s" />', wp_get_attachment_image_url(intval(@$image["id"]), 'full', false ), esc_attr(@$image["title"]), esc_attr(@$image["alt"]));
 
 										if(!empty(@$image["title"]) && $attributes['title'] == 1){
-											printf('<h2 class="myslideshow__title">%s</h2>', esc_attr($image["title"]));
+											printf('<h2 class="myslideshow__title">%s</h2>', esc_html(@$image["title"]));
 										}
 
 									if(!empty(@$image["url"])){

@@ -120,23 +120,23 @@ class MySlideshow_Admin {
 
 				if(is_array($images)){
 					foreach ($images as $key => $image) {
-						printf('<li class="myslideshow__item" id="slider-item-%s">', esc_attr($image["id"]));
+						printf('<li class="myslideshow__item" id="slider-item-%s">', esc_attr(@$image["id"]));
 				      		
 				      		echo '<span class="myslideshow__move dashicons dashicons-move"></span>';
 
-				      		printf('<span class="myslideshow__delete dashicons dashicons-trash" data-id="%s"></span>', esc_attr($image["id"]));
+				      		printf('<span class="myslideshow__delete dashicons dashicons-trash" data-id="%s"></span>', esc_attr(@$image["id"]));
 
 				      		echo '<div class="myslideshow__content">';
 
 				      			echo '<div class="myslideshow__thumbnail">';
 
-				      				printf('<img src="%s" class="myslideshow__image" />', wp_get_attachment_image_url(esc_attr($image["id"]), 'thumbnail', false ));
+				      				printf('<img src="%s" class="myslideshow__image" />', wp_get_attachment_image_url(intval(@$image["id"]), 'thumbnail', false ));
 
 				      			echo '</div>';
 
 				      			echo '<div class="myslideshow__form">';
 
-						      		printf('<input type="hidden" name="myslideshow_options[myslideshow_images][%s][id]" value="%s" />', esc_attr($image["id"]), esc_attr($image["id"]));
+						      		printf('<input type="hidden" name="myslideshow_options[myslideshow_images][%s][id]" value="%s" />', esc_attr(@$image["id"]), esc_attr(@$image["id"]));
 
 				      				echo '<table class="form-table" role="presentation">';
 
@@ -148,7 +148,7 @@ class MySlideshow_Admin {
 
 				      							echo '<td>';
 
-				      								printf('<input class="regular-text" type="text" name="myslideshow_options[myslideshow_images][%s][title]" value="%s" />', esc_attr($image["id"]), esc_attr($image["title"]));
+				      								printf('<input class="regular-text" type="text" name="myslideshow_options[myslideshow_images][%s][title]" value="%s" />', esc_attr(@$image["id"]), esc_attr(@$image["title"]));
 
 				      							echo '</td>';
 
@@ -160,7 +160,7 @@ class MySlideshow_Admin {
 
 				      							echo '<td>';
 
-				      								printf('<input class="regular-text" type="text" name="myslideshow_options[myslideshow_images][%s][alt]" value="%s" />', esc_attr($image["id"]), esc_attr($image["alt"]));
+				      								printf('<input class="regular-text" type="text" name="myslideshow_options[myslideshow_images][%s][alt]" value="%s" />', esc_attr(@$image["id"]), esc_attr(@$image["alt"]));
 
 				      							echo '</td>';
 
@@ -172,7 +172,7 @@ class MySlideshow_Admin {
 
 				      							echo '<td>';
 
-				      								printf('<input class="regular-text" type="text" name="myslideshow_options[myslideshow_images][%s][url]" value="%s" />', esc_attr($image["id"]), esc_attr($image["url"]));
+				      								printf('<input class="regular-text" type="text" name="myslideshow_options[myslideshow_images][%s][url]" value="%s" />', esc_attr(@$image["id"]), esc_attr(@$image["url"]));
 
 				      							echo '</td>';
 
