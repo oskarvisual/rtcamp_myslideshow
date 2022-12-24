@@ -8,11 +8,13 @@ class MySlideShowShortcode {
 
 	public function run():void {
 		add_action('wp_enqueue_scripts', function () {
-			wp_enqueue_style(MYSLIDESHOW_NAME . "-glider", 'https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css', [], MYSLIDESHOW_VERSION, 'all');
+			wp_enqueue_style( 'dashicons' );
+
+			wp_enqueue_style(MYSLIDESHOW_NAME . "-glider", MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/glider.min.css', [], MYSLIDESHOW_VERSION, 'all');
 
 			wp_enqueue_style(MYSLIDESHOW_NAME, MYSLIDESHOW_PLUGIN_URL . 'shortcodes/css/myslideshow.css', [], MYSLIDESHOW_VERSION, 'all');
 			
-			wp_enqueue_script( MYSLIDESHOW_NAME . '-glider', 'https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
+			wp_enqueue_script( MYSLIDESHOW_NAME . '-glider', MYSLIDESHOW_PLUGIN_URL . 'shortcodes/js/glider.min.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 
 			wp_enqueue_script( MYSLIDESHOW_NAME, MYSLIDESHOW_PLUGIN_URL . 'shortcodes/js/myslideshow.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 		});
