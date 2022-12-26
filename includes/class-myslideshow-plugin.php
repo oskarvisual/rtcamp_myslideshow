@@ -41,12 +41,10 @@ class MySlideshow_Plugin {
 	 * * Instantiate the shortcode class and run it
 	 */
 	public function run():void {
-		$myslideshow_shortcode = new MySlideshow_Shortcode();
-		$myslideshow_shortcode->run();
+		new MySlideshow_Shortcode();
 
 		if ( is_admin() ) {
-			$myslideshow_admin = new MySlideshow_Admin();
-			$myslideshow_admin->run();
+			new MySlideshow_Admin();
 		}
 	}
 }

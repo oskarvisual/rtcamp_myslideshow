@@ -21,15 +21,11 @@ class MySlideshow_Admin {
 	/**
 	 * It creates a new instance of the class and assigns the value of the myslideshow_options option to
 	 * the myslideshow_options property
+	 * It adds the admin menu and page.
 	 */
 	public function __construct() {
 		$this->myslideshow_options = get_option( 'myslideshow_options' );
-	}
 
-	/**
-	 * It adds the admin menu and page.
-	 */
-	public function run():void {
 		add_action( 'admin_menu', array( $this, 'myslideshow_plugin_page' ) );
 		add_action( 'admin_init', array( $this, 'myslideshow_page_init' ) );
 

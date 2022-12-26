@@ -21,16 +21,12 @@ class MySlideshow_Shortcode {
 	/**
 	 * It creates a new instance of the class and assigns the value of the myslideshow_options option to
 	 * the myslideshow_options property
-	 */
-	public function __construct() {
-		$this->myslideshow_options = get_option( 'myslideshow_options' );
-	}
-
-	/**
 	 * It adds a function to the `wp_enqueue_scripts` action hook that enqueues the styles and scripts
 	 * needed for the slideshow
 	 */
-	public function run():void {
+	public function __construct() {
+		$this->myslideshow_options = get_option( 'myslideshow_options' );
+
 		add_action(
 			'wp_enqueue_scripts',
 			function () {
