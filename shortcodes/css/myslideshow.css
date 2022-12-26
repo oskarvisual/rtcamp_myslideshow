@@ -1,7 +1,3 @@
-.myslideshow {
-
-}
-
 .myslideshow a {
 	text-decoration: none;
 }
@@ -39,22 +35,6 @@
 	line-height: 1;
 }
 
-.myslideshow__button.disabled {
-
-}
-
-
-.myslideshow__button--prev {
-
-}
-
-.myslideshow__button--next {
-
-}
-
-.myslideshow__dots {
-
-}
 .myslideshow__dots > .glider-dot,
 .myslideshow__dots > .glider-dot:not(:hover),
 .myslideshow__dots > .glider-dot:not(:active),
