@@ -26,29 +26,31 @@ class MySlideshow_Admin {
 	public function __construct() {
 		$this->myslideshow_options = get_option( 'myslideshow_options' );
 
-		add_action( 'admin_menu', array( $this, 'myslideshow_plugin_page' ) );
-		add_action( 'admin_init', array( $this, 'myslideshow_page_init' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		add_action( 'admin_menu', array( $this, 'register_settings_page' ) );
+		add_action( 'admin_init', array( $this, 'init_common_options' ) );
+	}
 
-		add_action(
-			'admin_enqueue_scripts',
-			function () {
-				wp_enqueue_media();
-				wp_enqueue_style( MYSLIDESHOW_NAME . '-admin', MYSLIDESHOW_PLUGIN_URL . 'admin/css/myslideshow-admin.css', array(), MYSLIDESHOW_VERSION, 'all' );
-				wp_enqueue_script( MYSLIDESHOW_NAME . '-admin', MYSLIDESHOW_PLUGIN_URL . 'admin/js/myslideshow-admin.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
-			}
-		);
+	/**
+	 * It adds a function to the `admin_enqueue_scripts` action hook that enqueues the styles and scripts
+	 * needed for the admin slideshow
+	 */
+	public function admin_enqueue_scripts():void {
+		wp_enqueue_media();
+		wp_enqueue_style( MYSLIDESHOW_NAME . '-admin', MYSLIDESHOW_PLUGIN_URL . 'admin/css/myslideshow-admin.css', array(), MYSLIDESHOW_VERSION, 'all' );
+		wp_enqueue_script( MYSLIDESHOW_NAME . '-admin', MYSLIDESHOW_PLUGIN_URL . 'admin/js/myslideshow-admin.js', array( 'jquery' ), MYSLIDESHOW_VERSION, false );
 	}
 
 	/**
 	 * It adds a new menu item to the admin menu
 	 */
-	public function myslideshow_plugin_page():void {
-		add_menu_page(
+	public function register_settings_page():string {
+		return add_menu_page(
 			'My SlideShow',
 			'My SlideShow',
 			'manage_options',
 			MYSLIDESHOW_NAME,
-			array( $this, 'myslideshow_create_admin_page' ),
+			array( $this, 'create_admin_page' ),
 			'dashicons-images-alt',
 			75
 		);
@@ -57,24 +59,24 @@ class MySlideshow_Admin {
 	/**
 	 * It registers a setting, adds a settings section, and adds three settings fields
 	 */
-	public function myslideshow_page_init():void {
+	public function init_common_options():void {
 		register_setting(
 			'myslideshow_options_group',
 			'myslideshow_options',
-			array( $this, 'myslideshow_sanitize' )
+			array( $this, 'sanitize_options' )
 		);
 
 		add_settings_section(
 			'myslideshow_setting_section',
 			'My SlideShow',
-			array( $this, 'myslideshow_section_info' ),
+			array( $this, 'section_info' ),
 			'myslideshow-admin'
 		);
 
 		add_settings_field(
 			'myslideshow_title',
 			'Title',
-			array( $this, 'myslideshow_title_callback' ),
+			array( $this, 'title_callback' ),
 			'myslideshow-admin',
 			'myslideshow_setting_section'
 		);
@@ -82,7 +84,7 @@ class MySlideshow_Admin {
 		add_settings_field(
 			'myslideshow_images',
 			'Images',
-			array( $this, 'myslideshow_slider_callback' ),
+			array( $this, 'slider_callback' ),
 			'myslideshow-admin',
 			'myslideshow_setting_section'
 		);
@@ -90,7 +92,7 @@ class MySlideshow_Admin {
 		add_settings_field(
 			'myslideshow_upload',
 			'Upload',
-			array( $this, 'myslideshow_upload_callback' ),
+			array( $this, 'upload_callback' ),
 			'myslideshow-admin',
 			'myslideshow_setting_section'
 		);
@@ -99,7 +101,7 @@ class MySlideshow_Admin {
 	/**
 	 * It creates the admin page
 	 */
-	public function myslideshow_create_admin_page():void {
+	public function create_admin_page():void {
 		echo '<div class="wrap">';
 
 			settings_errors();
@@ -119,32 +121,32 @@ class MySlideshow_Admin {
 	 * @param array $input array from the form.
 	 * @return array of sanitized values.
 	 */
-	public function myslideshow_sanitize( $input ):array {
-		$sanitary_values = array();
+	public function sanitize_options( $input ):array {
+		$output = array();
 
 		if ( isset( $input['myslideshow_title'] ) ) {
-			$sanitary_values['myslideshow_title'] = sanitize_text_field( $input['myslideshow_title'] );
+			$output['myslideshow_title'] = sanitize_text_field( $input['myslideshow_title'] );
 		}
 
 		if ( isset( $input['myslideshow_images'] ) ) {
-			$sanitary_values['myslideshow_images'] = sanitize_text_field( wp_json_encode( $input['myslideshow_images'] ) );
+			$output['myslideshow_images'] = sanitize_text_field( wp_json_encode( $input['myslideshow_images'] ) );
 		}
 
-		return $sanitary_values;
+		return apply_filters( 'sanitize_options', $output, $input );
 	}
 
 	/**
-	 * The function `myslideshow_section_info()` is a callback function that is called by the WordPress
+	 * The function `section_info()` is a callback function that is called by the WordPress
 	 * function `add_settings_section()` to display the section info
 	 */
-	public function myslideshow_section_info():void {
+	public function section_info():void {
 	}
 
 	/**
 	 * It creates a text input field with the name "myslideshow_options[myslideshow_title]" and the value
 	 * of the field is the value of the "myslideshow_title" key in the  array
 	 */
-	public function myslideshow_title_callback():void {
+	public function title_callback():void {
 		printf(
 			'<input class="regular-text" type="text" name="myslideshow_options[myslideshow_title]" id="myslideshow_title" value="%s">',
 			isset( $this->myslideshow_options['myslideshow_title'] ) ? esc_attr( $this->myslideshow_options['myslideshow_title'] ) : ''
@@ -154,14 +156,14 @@ class MySlideshow_Admin {
 	/**
 	 * Create a button to upload images
 	 */
-	public function myslideshow_upload_callback():void {
+	public function upload_callback():void {
 		echo '<input type="button" value="Upload Images" class="button-primary" id="upload_image"/>';
 	}
 
 	/**
 	 * It's a callback function to show the `myslideshow_slider` in the setting page
 	 */
-	public function myslideshow_slider_callback():void {
+	public function slider_callback():void {
 		echo '<ul class="myslideshow" id="slider">';
 
 		if ( isset( $this->myslideshow_options['myslideshow_images'] ) ) {
