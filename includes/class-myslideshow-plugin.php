@@ -18,9 +18,15 @@ require_once MYSLIDESHOW_PLUGIN_DIR . 'shortcodes/class-myslideshow-shortcode.ph
 class MySlideshow_Plugin {
 	/**
 	 * It adds an option to the database
+	 *
+	 * @return bool of add_option.
 	 */
-	public static function plugin_activation():void {
-		add_option(
+	public static function plugin_activation():bool {
+		if ( get_option( 'myslideshow_options' ) ) {
+			return true;
+		}
+
+		return add_option(
 			'myslideshow_options',
 			array(
 				'myslideshow_title'  => 'My Slideshow',
@@ -31,20 +37,38 @@ class MySlideshow_Plugin {
 
 	/**
 	 * It deletes the options from the database.
+	 *
+	 * @return bool of delete_option.
 	 */
-	public static function plugin_deactivation():void {
-		delete_option( 'myslideshow_options' );
+	public static function plugin_deactivation():bool {
+		return delete_option( 'myslideshow_options' );
 	}
 
 	/**
-	 * * If the user is in the admin area, instantiate the admin class and run it.
+	 * Check options from the database.
+	 *
+	 * @return bool of option.
+	 */
+	public static function plugin_check():bool {
+		return ( get_option( 'myslideshow_options' ) ) ? true : false;
+	}
+
+	/**
+	 * Run The Plugin
+	 *
+	 * First checks if the option exists in the database. If it does not exist, it creates it
+	 * If the user is in the admin area, instantiate the admin class and run it.
 	 * * Instantiate the shortcode class and run it
 	 */
 	public function run():void {
-		new MySlideshow_Shortcode();
+		if ( ! $this->plugin_check() ) {
+			$this->plugin_activation();
+		}
 
 		if ( is_admin() ) {
 			new MySlideshow_Admin();
 		}
+
+		new MySlideshow_Shortcode();
 	}
 }
